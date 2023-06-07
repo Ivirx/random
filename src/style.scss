@@ -1,0 +1,145 @@
+/** CSS Reset */
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 16px;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    color: rgb(255, 255, 255, 0.9);
+    font-family: monospace;
+    font-size: 1rem;
+    background-color: rgb(7, 8, 21);
+}
+
+input,
+textarea,
+button {
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+input,
+textarea {
+    padding: 0.3em 0.6em;
+    background-color: rgb(45, 45, 45);
+    border: none;
+}
+
+button {
+    padding: 0.5em 1em;
+    background-color: rgb(80, 80, 80);
+    border: none;
+    cursor: pointer;
+}
+
+/** CSS */
+
+html,
+body {
+    background-color: #000;
+}
+
+main {
+    min-width: 100vw;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    #number {
+        margin: 0;
+        font-size: 3rem;
+        font-weight: 600;
+        display: grid;
+        place-content: center;
+    }
+
+    .container {
+        --_mui-padding: 1.3rem;
+        --_mui-font-size: 1.5rem;
+        --_common-gap: 0.4rem;
+        --_transition-duration: 0.2s;
+
+        width: clamp(270px, 100%, 660px);
+        display: grid;
+        grid-template-columns: 1fr 0.65fr;
+        gap: var(--_common-gap);
+
+        .inputs {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: var(--_common-gap);
+
+            div {
+                --_red: #cc0000;
+
+                background-color: var(--_red);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: background var(--_transition-duration);
+
+                &:focus-within .material-symbols-rounded {
+                    color: var(--_red);
+                    background-color: white;
+                }
+
+                &:hover:not(:focus-within) {
+                    --_red: #aa0000;
+                }
+
+                input {
+                    --_padding: var(--_mui-padding);
+
+                    width: 100%;
+                    padding: calc(var(--_padding) / 2) var(--_padding);
+                    font-size: 1.05rem;
+                    font-weight: 600;
+                    background-color: transparent;
+
+                    &:focus,
+                    &:focus-visible {
+                        outline: none;
+                    }
+                }
+
+                .material-symbols-rounded {
+                    padding: var(--_mui-padding);
+                    font-size: var(--_mui-font-size);
+                    font-variation-settings: "FILL" 0, "wght" 700, "GRAD" 200, "opsz" 48;
+                    transition: color, background;
+                    transition-duration: var(--_transition-duration);
+                }
+            }
+        }
+
+        button {
+            grid-column: 1 / -1;
+            padding: 0;
+            transition: background-color var(--_transition-duration);
+
+            &:hover {
+                background-color: #404040;
+            }
+
+            .material-symbols-rounded {
+                padding: var(--_mui-padding);
+                font-size: var(--_mui-font-size);
+                font-variation-settings: "FILL" 1, "wght" 700, "GRAD" 200, "opsz" 48;
+            }
+        }
+    }
+}
