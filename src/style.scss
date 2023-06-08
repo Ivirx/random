@@ -46,6 +46,7 @@ button {
 
 html,
 body {
+    min-width: 280px;
     background-color: #000;
 }
 
@@ -59,6 +60,7 @@ main {
 
     #number {
         margin: 0;
+        padding: .5rem;
         font-size: 3rem;
         font-weight: 600;
         display: grid;
@@ -66,17 +68,19 @@ main {
     }
 
     .container {
-        --_mui-padding: 1.3rem;
+        --_mui-padding: 1.1rem;
         --_mui-font-size: 1.5rem;
         --_common-gap: 0.4rem;
         --_transition-duration: 0.2s;
+        --_red: #cc0000;
 
-        width: clamp(270px, 100%, 660px);
+        width: clamp(270px, 100%, 700px);
+        padding: 2rem;
         display: grid;
-        grid-template-columns: 1fr 0.65fr;
+        grid-template-columns: 1fr .8fr;
         gap: var(--_common-gap);
 
-        .inputs {
+        #inputs {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -84,8 +88,6 @@ main {
             gap: var(--_common-gap);
 
             div {
-                --_red: #cc0000;
-
                 background-color: var(--_red);
                 display: flex;
                 justify-content: center;
@@ -131,14 +133,42 @@ main {
             padding: 0;
             transition: background-color var(--_transition-duration);
 
-            &:hover {
+            &:hover,
+            &:focus-visible,
+            &:focus {
                 background-color: #404040;
+                outline: 1px solid var(--_red);
+                outline: none;
             }
 
             .material-symbols-rounded {
                 padding: var(--_mui-padding);
                 font-size: var(--_mui-font-size);
                 font-variation-settings: "FILL" 1, "wght" 700, "GRAD" 200, "opsz" 48;
+            }
+        }
+    }
+}
+
+@media (max-width: 470px) {
+    main {
+        #number {
+            font-size: 2rem;
+        }
+
+        .container {
+            --_mui-padding: .7rem;
+            --_mui-font-size: 1.1rem;
+            --_common-gap: 0.3rem;
+
+            padding: .7rem;
+
+            #inputs {
+                div {
+                    input {
+                        font-size: .85rem;
+                    }
+                }
             }
         }
     }

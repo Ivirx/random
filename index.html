@@ -14,17 +14,18 @@
 <body>
   <main>
     <div class="container">
-      <h1 id="number">47</h1>
-      <div class="inputs">
+      <h1 id="number">0</h1>
+      <form id="inputs">
         <div>
-          <span class="material-symbols-rounded">first_page</span>
+          <label for="start" class="material-symbols-rounded">first_page</label>
           <input type="number" id="start" value=1 autocomplete="off">
         </div>
         <div>
-          <span class="material-symbols-rounded">last_page</span>
+          <label for="end" class="material-symbols-rounded">last_page</label>
           <input type="number" id="end" value=99 autocomplete="off">
         </div>
-      </div>
+        <button type="submit" style="display:none;"></button>
+      </form>
       <button id="generate-button">
         <span class="material-symbols-rounded">
           temp_preferences_custom
