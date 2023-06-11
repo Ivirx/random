@@ -1,10 +1,10 @@
 import './style.scss';
 
-const number = document.querySelector("#number") as HTMLHeadingElement;
-const start = document.querySelector("#start") as HTMLInputElement;
-const end = document.querySelector("#end") as HTMLInputElement;
-const button = document.querySelector("#generate-button") as HTMLButtonElement;
-const form = document.querySelector("#inputs") as HTMLFormElement;
+const number = document.querySelector('#number') as HTMLHeadingElement;
+const start = document.querySelector('#start') as HTMLInputElement;
+const end = document.querySelector('#end') as HTMLInputElement;
+const button = document.querySelector('#generate-button') as HTMLButtonElement;
+const form = document.querySelector('#inputs') as HTMLFormElement;
 
 
 let intervalId = 0;
@@ -64,11 +64,46 @@ form.onsubmit = (e) => generateRandomNumber(e);
 
 
 window.onload = () => {
-    number.innerText = "0";
-    start.value = "0";
-    end.value = "99";
+    number.innerText = '0';
+    start.value = '0';
+    end.value = '99';
 
     setTimeout(() => {
         generateRandomNumber(null);
     }, 470);
+
+
+    /** Radius */
+    const container = document.querySelector('.container') as HTMLDivElement;
+
+    function getParameterByName(name: string, url = window.location.href) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    const type = getParameterByName('type');
+    let radius = getParameterByName('radius') || '0.2';
+
+    if (isNaN(parseFloat(radius)))
+        radius = '0';
+    else
+        radius = (parseFloat(radius)).toString();
+
+    if (type === 'none' || !type) {
+        container.style.setProperty('--_bdrs', '0');
+    }
+
+    if (type === 'some') {
+        container.style.setProperty('--_bdrs', `${radius.toString()}rem`);
+        container.style.setProperty('--_top-bottom-bdrs', '0');
+    }
+
+    if (type === 'all') {
+        container.style.setProperty('--_bdrs', `${radius.toString()}rem`);
+        container.style.setProperty('--_top-bottom-bdrs', `${radius.toString()}rem`);
+    }
 }

@@ -73,6 +73,8 @@ main {
         --_common-gap: 0.4rem;
         --_transition-duration: 0.2s;
         --_red: #cc0000;
+		--_bdrs: 0rem;
+		--_top-bottom-bdrs: 0rem;
 
         width: clamp(270px, 100%, 700px);
         padding: 2rem;
@@ -89,6 +91,7 @@ main {
 
             div {
                 background-color: var(--_red);
+				border-radius: var(--_bdrs);
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -122,6 +125,9 @@ main {
                     padding: var(--_mui-padding);
                     font-size: var(--_mui-font-size);
                     font-variation-settings: "FILL" 0, "wght" 700, "GRAD" 200, "opsz" 48;
+					border-radius: var(--_bdrs);
+					border-top-right-radius: var(--_top-bottom-bdrs);
+					border-bottom-right-radius: var(--_top-bottom-bdrs);
                     transition: color, background;
                     transition-duration: var(--_transition-duration);
                 }
@@ -131,6 +137,7 @@ main {
         button {
             grid-column: 1 / -1;
             padding: 0;
+			border-radius: var(--_bdrs);
             transition: background-color var(--_transition-duration);
 
             &:hover,
