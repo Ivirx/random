@@ -1,182 +1,187 @@
-/** CSS Reset */
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
 
 *,
 *:before,
 *:after {
-    box-sizing: border-box;
+	box-sizing: border-box;
+	letter-spacing: -0.135rem;
 }
 
-:root {
-    font-size: 16px;
+html {
+	min-width: 320px;
+	color-scheme: dark;
 }
 
-html,
 body {
-    margin: 0;
-    padding: 0;
-    color: rgb(255, 255, 255, 0.9);
-    font-family: monospace;
-    font-size: 1rem;
-    background-color: rgb(7, 8, 21);
+	margin: 0;
+	padding: 0;
+	color: rgb(255, 255, 255, 0.85);
+	font-family: 'Major Mono Display', monospace;
+	font-size: 1rem;
+	font-weight: 600;
+	background-color: #000;
 }
 
 input,
-textarea,
 button {
-    color: inherit;
-    font-family: inherit;
-    font-size: inherit;
-}
-
-input,
-textarea {
-    padding: 0.3em 0.6em;
-    background-color: rgb(45, 45, 45);
-    border: none;
-}
-
-button {
-    padding: 0.5em 1em;
-    background-color: rgb(80, 80, 80);
-    border: none;
-    cursor: pointer;
-}
-
-/** CSS */
-
-html,
-body {
-    min-width: 280px;
-    background-color: #000;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
 }
 
 main {
-    min-width: 100vw;
-    min-height: 100vh;
-    min-height: 100svh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	min-width: 100vw;
+	min-height: 100vh;
+	min-height: 100svh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
-    #number {
-        margin: 0;
-        padding: .5rem;
-        font-size: 3rem;
-        font-weight: 600;
-        display: grid;
-        place-content: center;
-    }
+	#number {
+		margin: 0;
+		padding: 0.5rem;
+		font-size: 2.85rem;
+		font-weight: 900;
+		display: grid;
+		place-content: center;
+	}
 
-    .container {
-        --_mui-padding: 1.1rem;
-        --_mui-font-size: 1.5rem;
-        --_common-gap: 0.4rem;
-        --_transition-duration: 0.2s;
-        --_red: #cc0000;
-		--_bdrs: 0rem;
-		--_top-bottom-bdrs: 0rem;
+	.container {
+		--_mui-padding: 1.185rem;
+		--_mui-font-size: 1.5rem;
+		--_common-gap: 0.185rem;
+		--_transition-duration: 0.35s;
+		--_red: #cc0000;
+		--_bdrs: 0.125rem;
+		--_more-bdrs: 1.5rem;
+		--_top-bottom-bdrs: 0.125rem;
 
-        width: clamp(270px, 100%, 700px);
-        padding: 2rem;
-        display: grid;
-        grid-template-columns: 1fr .8fr;
-        gap: var(--_common-gap);
+		width: clamp(270px, 100%, 700px);
+		padding: 2rem;
+		display: grid;
+		grid-template-columns: 1fr 0.8fr;
+		gap: var(--_common-gap);
 
-        #inputs {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: var(--_common-gap);
+		#inputs {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: var(--_common-gap);
 
-            div {
-                background-color: var(--_red);
+			div {
+				width: 100%;
+				background-color: var(--_red);
 				border-radius: var(--_bdrs);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                transition: background var(--_transition-duration);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				transition: background var(--_transition-duration);
 
-                &:focus-within .material-symbols-rounded {
-                    color: var(--_red);
-                    background-color: white;
-                }
+				&:first-child {
+					border-top-right-radius: var(--_more-bdrs);
+				}
 
-                &:hover:not(:focus-within) {
-                    --_red: #aa0000;
-                }
+				&:focus-within .material-symbols-rounded {
+					color: var(--_red);
+					background-color: white;
+				}
 
-                input {
-                    --_padding: var(--_mui-padding);
+				&:hover:not(:focus-within) {
+					--_red: #aa0000;
+				}
 
-                    width: 100%;
-                    padding: calc(var(--_padding) / 2) var(--_padding);
-                    font-size: 1.05rem;
-                    font-weight: 600;
-                    background-color: transparent;
+				input {
+					--_padding: var(--_mui-padding);
 
-                    &:focus,
-                    &:focus-visible {
-                        outline: none;
-                    }
-                }
+					width: 100%;
+					padding-block: calc(var(--_padding) / 2);
+					padding-inline: calc(var(--_padding) / 2) calc(var(--_padding));
+					font-size: 1.025rem;
+					line-height: 1.5;
+					font-weight: 900;
+					background-color: transparent;
+					border: none;
 
-                .material-symbols-rounded {
-                    padding: var(--_mui-padding);
-                    font-size: var(--_mui-font-size);
-                    font-variation-settings: "FILL" 0, "wght" 700, "GRAD" 200, "opsz" 48;
+					&:focus,
+					&:focus-visible {
+						outline: none;
+					}
+				}
+
+				.material-symbols-rounded {
+					padding: var(--_mui-padding);
+					font-size: var(--_mui-font-size);
+					font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 200, 'opsz' 48;
 					border-radius: var(--_bdrs);
 					border-top-right-radius: var(--_top-bottom-bdrs);
 					border-bottom-right-radius: var(--_top-bottom-bdrs);
-                    transition: color, background;
-                    transition-duration: var(--_transition-duration);
-                }
-            }
-        }
+					transition: color, background;
+					transition-duration: var(--_transition-duration);
+				}
+			}
+		}
 
-        button {
-            grid-column: 1 / -1;
-            padding: 0;
+		button {
+			grid-column: 1 / -1;
+			padding: 0;
+			background-color: rgb(60, 60, 60);
+			border: none;
 			border-radius: var(--_bdrs);
-            transition: background-color var(--_transition-duration);
+			border-bottom-left-radius: var(--_more-bdrs);
+			border-bottom-right-radius: var(--_more-bdrs);
+			transition: background-color var(--_transition-duration);
+			cursor: pointer;
 
-            &:hover,
-            &:focus-visible,
-            &:focus {
-                background-color: #404040;
-                outline: 1px solid var(--_red);
-                outline: none;
-            }
+			&:hover,
+			&:focus-visible,
+			&:focus {
+				background-color: rgb(50, 50, 50);
+			}
 
-            .material-symbols-rounded {
-                padding: var(--_mui-padding);
-                font-size: var(--_mui-font-size);
-                font-variation-settings: "FILL" 1, "wght" 700, "GRAD" 200, "opsz" 48;
-            }
-        }
-    }
+			.material-symbols-rounded {
+				padding: var(--_mui-padding);
+				font-size: var(--_mui-font-size);
+				font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 200, 'opsz' 48;
+			}
+		}
+	}
 }
 
-@media (max-width: 470px) {
-    main {
-        #number {
-            font-size: 2rem;
-        }
+@media (max-width: 550px) {
+	main {
+		#number {
+			font-size: 2.25rem;
+		}
 
-        .container {
-            --_mui-padding: .7rem;
-            --_mui-font-size: 1.1rem;
-            --_common-gap: 0.3rem;
+		.container {
+			--_mui-padding: 1rem;
+			--_mui-font-size: 1.125rem;
 
-            padding: .7rem;
+			padding: 1.25rem;
 
-            #inputs {
-                div {
-                    input {
-                        font-size: .85rem;
-                    }
-                }
-            }
-        }
-    }
+			#inputs div input {
+				font-size: 0.925rem;
+			}
+		}
+	}
+}
+
+@media (max-width: 425px) {
+	main {
+		#number {
+			font-size: 1.85rem;
+		}
+
+		.container {
+			--_mui-padding: 0.725rem;
+			--_mui-font-size: 1rem;
+
+			padding: 0.825rem;
+
+			#inputs div input {
+				font-size: 0.85rem;
+			}
+		}
+	}
 }
