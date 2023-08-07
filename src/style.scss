@@ -4,11 +4,10 @@
 *:before,
 *:after {
 	box-sizing: border-box;
-	letter-spacing: -0.135rem;
 }
 
 html {
-	min-width: 320px;
+	min-width: 20em;
 	color-scheme: dark;
 }
 
@@ -54,10 +53,10 @@ main {
 		--_red: #cc0000;
 		--_bdrs: 0.125rem;
 		--_more-bdrs: 1.5rem;
-		--_top-bottom-bdrs: 0.125rem;
 
-		width: clamp(270px, 100%, 700px);
-		padding: 2rem;
+		width: clamp(16.875em, 100%, 43.75em);
+		padding-block: 6rem;
+		padding-inline: 1.25rem;
 		display: grid;
 		grid-template-columns: 1fr 0.8fr;
 		gap: var(--_common-gap);
@@ -75,7 +74,8 @@ main {
 				border-radius: var(--_bdrs);
 				display: flex;
 				justify-content: center;
-				align-items: center;
+				align-items: stretch;
+				overflow: hidden;
 				transition: background var(--_transition-duration);
 
 				&:first-child {
@@ -95,11 +95,11 @@ main {
 					--_padding: var(--_mui-padding);
 
 					width: 100%;
-					padding-block: calc(var(--_padding) / 2);
 					padding-inline: calc(var(--_padding) / 2) calc(var(--_padding));
-					font-size: 1.025rem;
+					font-family: 'Major Mono Display', monospace;
+					font-size: 1.125rem;
+					font-weight: bolder;
 					line-height: 1.5;
-					font-weight: 900;
 					background-color: transparent;
 					border: none;
 
@@ -114,8 +114,6 @@ main {
 					font-size: var(--_mui-font-size);
 					font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 200, 'opsz' 48;
 					border-radius: var(--_bdrs);
-					border-top-right-radius: var(--_top-bottom-bdrs);
-					border-bottom-right-radius: var(--_top-bottom-bdrs);
 					transition: color, background;
 					transition-duration: var(--_transition-duration);
 				}
@@ -148,39 +146,21 @@ main {
 	}
 }
 
-@media (max-width: 550px) {
+@media (max-width: 37.5em) {
 	main {
 		#number {
-			font-size: 2.25rem;
+			padding-block: 0.5em;
+			font-size: 3.75rem;
 		}
 
 		.container {
-			--_mui-padding: 1rem;
-			--_mui-font-size: 1.125rem;
+			grid-template-columns: 1fr;
 
-			padding: 1.25rem;
-
-			#inputs div input {
-				font-size: 0.925rem;
-			}
-		}
-	}
-}
-
-@media (max-width: 425px) {
-	main {
-		#number {
-			font-size: 1.85rem;
-		}
-
-		.container {
-			--_mui-padding: 0.725rem;
-			--_mui-font-size: 1rem;
-
-			padding: 0.825rem;
-
-			#inputs div input {
-				font-size: 0.85rem;
+			#inputs div {
+				&:first-child {
+					border-top-left-radius: var(--_more-bdrs);
+					border-top-right-radius: var(--_more-bdrs);
+				}
 			}
 		}
 	}

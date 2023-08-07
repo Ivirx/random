@@ -24,9 +24,13 @@ const generateRandomNumber = (event: SubmitEvent | null) => {
 	}
 
 	const randomNumber =
-		Math.floor(Math.random() * (Number(endingValue) - Number(startingValue) + 1)) + Number(startingValue);
-	let increaseOrDecreaseBy = Math.abs(Math.floor((randomNumber - Number(number.innerText)) / 30));
-	if (increaseOrDecreaseBy < 4 && randomNumber - Number(number.innerText) < 60) increaseOrDecreaseBy = 2;
+		Math.floor(Math.random() * (Number(endingValue) - Number(startingValue) + 1)) +
+		Number(startingValue);
+	let increaseOrDecreaseBy = Math.abs(
+		Math.floor((randomNumber - Number(number.innerText)) / 30)
+	);
+	if (increaseOrDecreaseBy < 4 && randomNumber - Number(number.innerText) < 60)
+		increaseOrDecreaseBy = 2;
 
 	clearInterval(intervalId); // Clearing the previous interval
 
