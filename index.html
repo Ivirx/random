@@ -9,9 +9,15 @@
 			rel="stylesheet"
 			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
 		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap"
+			rel="stylesheet"
+		/>
 		
-		<script type="module" crossorigin src="/random/assets/index-bfc6ac1c.js"></script>
-		<link rel="stylesheet" href="/random/assets/index-a353675b.css">
+		<script type="module" crossorigin src="/random/assets/index-9faed587.js"></script>
+		<link rel="stylesheet" href="/random/assets/index-27dac242.css">
 	</head>
 
 	<body>
@@ -21,7 +27,7 @@
 				<form id="inputs">
 					<div>
 						<label for="start" class="material-symbols-rounded">first_page</label>
-						<input type="number" id="start" value="1" autocomplete="off" />
+						<input type="number" id="start" value="0" autocomplete="off" />
 					</div>
 					<div>
 						<label for="end" class="material-symbols-rounded">last_page</label>
@@ -29,9 +35,17 @@
 					</div>
 					<button type="submit" style="display: none"></button>
 				</form>
-				<button id="generate-button">
-					<span class="material-symbols-rounded"> temp_preferences_custom </span>
-				</button>
+				<div class="buttons">
+					<button id="submit" title="Generates based on the inputs">
+						<span class="material-symbols-rounded">autorenew</span>
+					</button>
+					<button
+						id="all-random"
+						title="Regenarates every value including the inputs between 0 to 99"
+					>
+						<span class="material-symbols-rounded">temp_preferences_custom</span>
+					</button>
+				</div>
 			</div>
 		</main>
 	</body>
