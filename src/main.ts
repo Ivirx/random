@@ -3,14 +3,13 @@ import './style.scss';
 const number = document.querySelector('#number') as HTMLHeadingElement;
 const start = document.querySelector('#start') as HTMLInputElement;
 const end = document.querySelector('#end') as HTMLInputElement;
-const button = document.querySelector('#generate-button') as HTMLButtonElement;
 const form = document.querySelector('#inputs') as HTMLFormElement;
+const submit = document.querySelector('#submit') as HTMLButtonElement;
+const allRandom = document.querySelector('#all-random') as HTMLButtonElement;
 
 let intervalId = 0;
 
-const generateRandomNumber = (event: SubmitEvent | null) => {
-	event?.preventDefault();
-
+const generateRandomNumber = () => {
 	let startingValue = Number(start.value);
 	let endingValue = Number(end.value);
 
@@ -60,15 +59,40 @@ const generateRandomNumber = (event: SubmitEvent | null) => {
 	}, 22);
 };
 
-button.onclick = () => generateRandomNumber(null);
-form.onsubmit = (e) => generateRandomNumber(e);
+// Adding Submit handler on the form
+form.onsubmit = (event) => {
+	event.preventDefault();
+	console.log(event);
 
+	generateRandomNumber();
+};
+
+// Adding the click handler on the #submit button
+submit.onclick = () => {
+	generateRandomNumber();
+};
+
+// Adding the click handler on the #all-random button
+allRandom.onclick = () => {
+	let startingValue = Math.floor(Math.random() * 100);
+	let endingValue = Math.floor(Math.random() * 100);
+	if (startingValue > endingValue) {
+		let x = startingValue;
+		startingValue = endingValue;
+		endingValue = x;
+	}
+
+	start.value = startingValue.toString();
+	end.value = endingValue.toString();
+
+	setTimeout(() => generateRandomNumber(), 150);
+};
+
+// On initial load set the values and renegrate a random value
 window.onload = () => {
 	number.innerText = '0';
 	start.value = '0';
 	end.value = '99';
 
-	setTimeout(() => {
-		generateRandomNumber(null);
-	}, 470);
+	setTimeout(() => generateRandomNumber(), 550);
 };
