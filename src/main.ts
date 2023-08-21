@@ -1,6 +1,6 @@
 import './style.scss';
 
-const number = document.querySelector('#number') as HTMLHeadingElement;
+const numberElement = document.querySelector('#number') as HTMLHeadingElement;
 const start = document.querySelector('#start') as HTMLInputElement;
 const end = document.querySelector('#end') as HTMLInputElement;
 const form = document.querySelector('#inputs') as HTMLFormElement;
@@ -9,90 +9,106 @@ const allRandom = document.querySelector('#all-random') as HTMLButtonElement;
 
 let intervalId = 0;
 
-const generateRandomNumber = () => {
-	let startingValue = Number(start.value);
-	let endingValue = Number(end.value);
-
-	if (startingValue > endingValue) {
-		let x = startingValue;
-		startingValue = endingValue;
-		endingValue = x;
-
-		start.value = startingValue.toString();
-		end.value = endingValue.toString();
-	}
-
+const generateRandomNumber = (startingValue: number, endingValue: number) => {
 	const randomNumber =
-		Math.floor(Math.random() * (Number(endingValue) - Number(startingValue) + 1)) +
-		Number(startingValue);
+		Math.floor(Math.random() * (endingValue - startingValue + 1)) + startingValue;
 	let increaseOrDecreaseBy = Math.abs(
-		Math.floor((randomNumber - Number(number.innerText)) / 30)
+		Math.floor((randomNumber - Number(numberElement.innerText)) / 30)
 	);
-	if (increaseOrDecreaseBy < 4 && randomNumber - Number(number.innerText) < 60)
+	if (increaseOrDecreaseBy < 4 && randomNumber - Number(numberElement.innerText) < 60)
 		increaseOrDecreaseBy = 2;
 
 	clearInterval(intervalId); // Clearing the previous interval
 
 	let displayedNumber;
 	intervalId = setInterval(() => {
-		displayedNumber = Number(number.innerText);
+		displayedNumber = Number(numberElement.innerText);
 
 		if (displayedNumber < randomNumber) {
 			if (displayedNumber + increaseOrDecreaseBy > randomNumber) {
-				number.innerText = String(randomNumber); // Setting the displayed number to the random number
+				numberElement.innerText = String(randomNumber); // Setting the displayed number to the random number
 				return;
 			}
 
-			number.innerText = String(displayedNumber + increaseOrDecreaseBy); // else increasing the displayed number
+			numberElement.innerText = String(displayedNumber + increaseOrDecreaseBy); // else increasing the displayed number
 		}
 
 		if (displayedNumber > randomNumber) {
 			if (displayedNumber - increaseOrDecreaseBy < randomNumber) {
-				number.innerText = String(randomNumber); // Setting the displayed number to the random number
+				numberElement.innerText = String(randomNumber); // Setting the displayed number to the random number
 				return;
 			}
 
-			number.innerText = String(displayedNumber - increaseOrDecreaseBy); // else decreasing the displayed number
+			numberElement.innerText = String(displayedNumber - increaseOrDecreaseBy); // else decreasing the displayed number
 		}
 
 		if (displayedNumber === randomNumber) clearInterval(intervalId); // Stop the interval when the displayed number is equal to the random number
-	}, 22);
+	}, 25);
 };
 
-// Adding Submit handler on the form
-form.onsubmit = (event) => {
-	event.preventDefault();
-	console.log(event);
-
-	generateRandomNumber();
+// Sets the starting and ending value in the local storage
+const setLocalStorage = (startingValue: number, endingValue: number) => {
+	localStorage.setItem('startingValue', startingValue.toString());
+	localStorage.setItem('endingValue', endingValue.toString());
 };
 
-// Adding the click handler on the #submit button
-submit.onclick = () => {
-	generateRandomNumber();
-};
+// Sets the correct order of the starting and ending value
+const setCorrectOrder = (s: number, e: number) => {
+	let startingValue = s,
+		endingValue = e;
 
-// Adding the click handler on the #all-random button
-allRandom.onclick = () => {
-	let startingValue = Math.floor(Math.random() * 100);
-	let endingValue = Math.floor(Math.random() * 100);
 	if (startingValue > endingValue) {
-		let x = startingValue;
+		let temp = startingValue;
 		startingValue = endingValue;
-		endingValue = x;
+		endingValue = temp;
 	}
 
 	start.value = startingValue.toString();
 	end.value = endingValue.toString();
 
-	setTimeout(() => generateRandomNumber(), 150);
+	return [startingValue, endingValue];
+};
+
+// Submit handler whe user clicks on the submit button or presses enter
+const submitHandler = () => {
+	const [correctStartingValue, correctEndingValue] = setCorrectOrder(
+		Number(start.value),
+		Number(end.value)
+	);
+	setLocalStorage(correctStartingValue, correctEndingValue);
+	generateRandomNumber(correctStartingValue, correctEndingValue);
+};
+
+// Adding Submit handler on the form
+form.onsubmit = (event) => {
+	event.preventDefault();
+
+	submitHandler();
+};
+
+// Adding the click handler on the #submit button
+submit.onclick = submitHandler;
+
+// Adding the click handler on the #all-random button
+allRandom.onclick = () => {
+	const [correctStartingValue, correctEndingValue] = setCorrectOrder(
+		Math.floor(Math.random() * 100),
+		Math.floor(Math.random() * 100)
+	);
+
+	setTimeout(() => generateRandomNumber(correctStartingValue, correctEndingValue), 150);
 };
 
 // On initial load set the values and renegrate a random value
 window.onload = () => {
-	number.innerText = '0';
-	start.value = '0';
-	end.value = '99';
+	let startingValue = localStorage.getItem('startingValue') || '0';
+	let endingValue = localStorage.getItem('endingValue') || '99';
 
-	setTimeout(() => generateRandomNumber(), 550);
+	numberElement.innerText = '0';
+	const [correctStartingValue, correctEndingValue] = setCorrectOrder(
+		Number(startingValue),
+		Number(endingValue)
+	);
+
+	setTimeout(() => generateRandomNumber(correctStartingValue, correctEndingValue), 550);
 };
