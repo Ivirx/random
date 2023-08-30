@@ -4,7 +4,7 @@
 	box-sizing: border-box;
 }
 
-html {
+:root {
 	min-width: 20em;
 	color-scheme: dark;
 }
@@ -13,9 +13,8 @@ body {
 	margin: 0;
 	padding: 0;
 	color: rgb(255, 255, 255, 0.85);
-	font-family: 'Major Mono Display', monospace;
+	font-family: 'ADLaM Display', cursive;
 	font-size: 1rem;
-	font-weight: 600;
 	background-color: #000;
 }
 
@@ -27,6 +26,14 @@ button {
 }
 
 main {
+	--_mui-padding: 1.1875rem;
+	--_mui-font-size: 1.5rem;
+	--_common-gap: 0.1875rem;
+	--_transition-duration: 0.35s;
+	--_red: #cc0000;
+	--_bdrs: 0.25rem;
+	--_more-bdrs: 1.875rem;
+
 	min-width: 100%;
 	min-height: 100vh;
 	min-height: 100svh;
@@ -38,23 +45,20 @@ main {
 		margin: 0;
 		padding: 0.5rem;
 		font-size: 2.85rem;
-		font-weight: 900;
+		font-weight: 500;
+		background-color: #333d;
+		border-radius: var(--_bdrs);
+		border-top-left-radius: var(--_more-bdrs);
 		display: grid;
 		place-content: center;
 	}
 
 	.container {
-		--_mui-padding: 1.185rem;
-		--_mui-font-size: 1.5rem;
-		--_common-gap: 0.185rem;
-		--_transition-duration: 0.35s;
-		--_red: #cc0000;
-		--_bdrs: 0.125rem;
-		--_more-bdrs: 1.5rem;
-
 		width: clamp(16.875em, 100%, 43.75em);
-		padding-block: 6rem 10rem;
-		padding-inline: 1rem;
+		margin-block: 6rem 10rem;
+		padding: 1rem;
+		background-color: #222;
+		border-radius: var(--_more-bdrs);
 		display: grid;
 		grid-template-columns: 1fr 0.8fr;
 		gap: var(--_common-gap);
@@ -94,9 +98,8 @@ main {
 
 					width: 100%;
 					padding-inline: calc(var(--_padding) / 2) calc(var(--_padding));
-					font-family: 'Major Mono Display', monospace;
+					font: inherit;
 					font-size: 1.125rem;
-					font-weight: bolder;
 					line-height: 1.5;
 					background-color: transparent;
 					border: none;
@@ -129,7 +132,7 @@ main {
 
 			button {
 				padding: 0;
-				background-color: rgb(60, 60, 60);
+				background-color: #3c3c3c;
 				border: none;
 				border-radius: var(--_bdrs);
 				transition: background-color var(--_transition-duration);
@@ -138,7 +141,7 @@ main {
 				&:hover,
 				&:focus-visible,
 				&:focus {
-					background-color: rgb(50, 50, 50);
+					background-color: #323232;
 				}
 
 				.material-symbols-rounded {
@@ -166,19 +169,22 @@ main {
 	}
 }
 
-@media (max-width: 37.5em) {
+@media (max-width: 56.25em) {
 	main {
+		padding-inline: 1rem;
+
 		#number {
-			padding-block: 0.5em;
+			padding-block: 1.25em;
 			font-size: 3.75rem;
+			border-top-left-radius: var(--_more-bdrs);
+			border-top-right-radius: var(--_more-bdrs);
 		}
 
 		.container {
 			grid-template-columns: 1fr;
 
 			#inputs div:first-child {
-				border-top-left-radius: var(--_more-bdrs);
-				border-top-right-radius: var(--_more-bdrs);
+				border-top-right-radius: var(--_bdrs);
 			}
 		}
 	}
