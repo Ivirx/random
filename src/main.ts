@@ -1,22 +1,19 @@
-import './style.scss';
+import "./style.scss";
 
-const numberElement = document.querySelector('#number') as HTMLHeadingElement;
-const start = document.querySelector('#start') as HTMLInputElement;
-const end = document.querySelector('#end') as HTMLInputElement;
-const form = document.querySelector('#inputs') as HTMLFormElement;
-const submit = document.querySelector('#submit') as HTMLButtonElement;
-const allRandom = document.querySelector('#all-random') as HTMLButtonElement;
+const numberElement = document.querySelector("#number") as HTMLHeadingElement;
+const start = document.querySelector("#start") as HTMLInputElement;
+const end = document.querySelector("#end") as HTMLInputElement;
+const form = document.querySelector("#inputs") as HTMLFormElement;
+const submit = document.querySelector("#submit") as HTMLButtonElement;
+const allRandom = document.querySelector("#all-random") as HTMLButtonElement;
+const container = document.querySelector(".container") as HTMLDivElement;
 
 let intervalId = 0;
 
 const generateRandomNumber = (startingValue: number, endingValue: number) => {
-	const randomNumber =
-		Math.floor(Math.random() * (endingValue - startingValue + 1)) + startingValue;
-	let increaseOrDecreaseBy = Math.abs(
-		Math.floor((randomNumber - Number(numberElement.innerText)) / 30)
-	);
-	if (increaseOrDecreaseBy < 4 && randomNumber - Number(numberElement.innerText) < 60)
-		increaseOrDecreaseBy = 2;
+	const randomNumber = Math.floor(Math.random() * (endingValue - startingValue + 1)) + startingValue;
+	let increaseOrDecreaseBy = Math.abs(Math.floor((randomNumber - Number(numberElement.innerText)) / 30));
+	if (increaseOrDecreaseBy < 4 && randomNumber - Number(numberElement.innerText) < 60) increaseOrDecreaseBy = 2;
 
 	clearInterval(intervalId); // Clearing the previous interval
 
@@ -48,8 +45,8 @@ const generateRandomNumber = (startingValue: number, endingValue: number) => {
 
 // Sets the starting and ending value in the local storage
 const setLocalStorage = (startingValue: number, endingValue: number) => {
-	localStorage.setItem('startingValue', startingValue.toString());
-	localStorage.setItem('endingValue', endingValue.toString());
+	localStorage.setItem("startingValue", startingValue.toString());
+	localStorage.setItem("endingValue", endingValue.toString());
 };
 
 // Sets the correct order of the starting and ending value
@@ -71,10 +68,7 @@ const setCorrectOrder = (s: number, e: number) => {
 
 // Submit handler whe user clicks on the submit button or presses enter
 const submitHandler = () => {
-	const [correctStartingValue, correctEndingValue] = setCorrectOrder(
-		Number(start.value),
-		Number(end.value)
-	);
+	const [correctStartingValue, correctEndingValue] = setCorrectOrder(Number(start.value), Number(end.value));
 	setLocalStorage(correctStartingValue, correctEndingValue);
 	generateRandomNumber(correctStartingValue, correctEndingValue);
 };
@@ -101,14 +95,15 @@ allRandom.onclick = () => {
 
 // On initial load set the values and renegrate a random value
 window.onload = () => {
-	let startingValue = localStorage.getItem('startingValue') || '0';
-	let endingValue = localStorage.getItem('endingValue') || '99';
+	setTimeout(() => {
+		container.classList.add("animate");
+	}, 120);
 
-	numberElement.innerText = '0';
-	const [correctStartingValue, correctEndingValue] = setCorrectOrder(
-		Number(startingValue),
-		Number(endingValue)
-	);
+	let startingValue = localStorage.getItem("startingValue") || "0";
+	let endingValue = localStorage.getItem("endingValue") || "99";
 
-	setTimeout(() => generateRandomNumber(correctStartingValue, correctEndingValue), 550);
+	numberElement.innerText = "0";
+	const [correctStartingValue, correctEndingValue] = setCorrectOrder(Number(startingValue), Number(endingValue));
+
+	setTimeout(() => generateRandomNumber(correctStartingValue, correctEndingValue), 1600);
 };

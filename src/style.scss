@@ -9,11 +9,24 @@
 	color-scheme: dark;
 }
 
+::-webkit-scrollbar {
+	width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #000;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #222;
+	border-radius: 100vmax;
+}
+
 body {
 	margin: 0;
 	padding: 0;
 	color: rgb(255, 255, 255, 0.85);
-	font-family: 'ADLaM Display', cursive;
+	font-family: "ADLaM Display", cursive;
 	font-size: 1rem;
 	background-color: #000;
 }
@@ -70,7 +83,15 @@ main {
 			align-items: center;
 			gap: var(--_common-gap);
 
-			div {
+			[animate] {
+				width: 100%;
+
+				&:first-child div {
+					border-top-right-radius: var(--_more-bdrs);
+				}
+			}
+
+			[animate] div {
 				width: 100%;
 				background-color: var(--_red);
 				border-radius: var(--_bdrs);
@@ -79,10 +100,6 @@ main {
 				align-items: stretch;
 				overflow: hidden;
 				transition: background var(--_transition-duration);
-
-				&:first-child {
-					border-top-right-radius: var(--_more-bdrs);
-				}
 
 				&:focus-within .material-symbols-rounded {
 					color: var(--_red);
@@ -113,7 +130,7 @@ main {
 				.material-symbols-rounded {
 					padding: var(--_mui-padding);
 					font-size: var(--_mui-font-size);
-					font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 200, 'opsz' 48;
+					font-variation-settings: "FILL" 0, "wght" 700, "GRAD" 200, "opsz" 48;
 					border-radius: var(--_bdrs);
 					transition: color, background;
 					transition-duration: var(--_transition-duration);
@@ -130,11 +147,22 @@ main {
 			gap: var(--_common-gap);
 			overflow: hidden;
 
+			[animate="4"] {
+				flex: 1 1 85%;
+			}
+
+			[animate="5"] {
+				min-width: 6.25rem;
+				flex: 1 1 15%;
+			}
+
 			button {
+				width: 100%;
 				padding: 0;
 				background-color: #3c3c3c;
 				border: none;
 				border-radius: var(--_bdrs);
+				display: block;
 				transition: background-color var(--_transition-duration);
 				cursor: pointer;
 
@@ -147,13 +175,12 @@ main {
 				.material-symbols-rounded {
 					padding: var(--_mui-padding);
 					font-size: var(--_mui-font-size);
-					font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 200, 'opsz' 48;
+					font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 200, "opsz" 48;
 				}
 			}
 
 			#submit {
 				border-bottom-left-radius: var(--_more-bdrs);
-				flex: 1 1 85%;
 			}
 
 			#all-random {
@@ -183,9 +210,59 @@ main {
 		.container {
 			grid-template-columns: 1fr;
 
-			#inputs div:first-child {
+			#inputs [animate]:first-child div {
 				border-top-right-radius: var(--_bdrs);
 			}
 		}
 	}
+}
+
+body {
+	--delay: 120ms;
+	--child: 1;
+	--sub-delay: 80ms;
+	--sub-child: 0;
+}
+
+.container,
+[animate] {
+	opacity: 0;
+	translate: -3.6rem -1.2rem;
+}
+
+.container.animate,
+.container.animate [animate] {
+	opacity: 1;
+	translate: 0 0;
+	transition: 1000ms cubic-bezier(0.4, 0, 0.2, 1)
+		calc(120ms + ((var(--delay) * var(--child)) + (var(--sub-delay) * var(--sub-child))));
+	transition-property: opacity, translate;
+}
+
+.container {
+	--child: 1;
+}
+
+[animate="1"] {
+	--child: 2;
+}
+
+[animate="2"] {
+	--child: 3;
+	--sub-child: 0;
+}
+
+[animate="3"] {
+	--child: 3;
+	--sub-child: 1;
+}
+
+[animate="4"] {
+	--child: 4;
+	--sub-child: 0;
+}
+
+[animate="5"] {
+	--child: 4;
+	--sub-child: 1;
 }
