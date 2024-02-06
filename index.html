@@ -11,44 +11,46 @@
 		/>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap"
-			rel="stylesheet"
-		/>
+		<link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap" rel="stylesheet" />
 		
-		<script type="module" crossorigin src="/random/assets/index-0a8d9e14.js"></script>
-		<link rel="stylesheet" href="/random/assets/index-ef0b56b9.css">
+		<script type="module" crossorigin src="/random/assets/index-9cf8543d.js"></script>
+		<link rel="stylesheet" href="/random/assets/index-ed57d084.css">
 	</head>
 
 	<body>
 		<main>
 			<div class="container">
-				<h1 id="number">0</h1>
+				<h1 animate="1" id="number">0</h1>
 				<form id="inputs">
-					<div>
-						<label for="start">
-							<span class="material-symbols-rounded">first_page</span>
-						</label>
-						<input type="number" id="start" autocomplete="off" />
+					<div animate="2">
+						<div>
+							<label for="start">
+								<span class="material-symbols-rounded">first_page</span>
+							</label>
+							<input type="number" id="start" autocomplete="off" />
+						</div>
 					</div>
-					<div>
-						<label for="end">
-							<span class="material-symbols-rounded">last_page</span>
-						</label>
-						<input type="number" id="end" autocomplete="off" />
+					<div animate="3">
+						<div>
+							<label for="end">
+								<span class="material-symbols-rounded">last_page</span>
+							</label>
+							<input type="number" id="end" autocomplete="off" />
+						</div>
 					</div>
 					<button type="submit" style="display: none"></button>
 				</form>
 				<div class="buttons">
-					<button id="submit" title="Generates based on the inputs">
-						<span class="material-symbols-rounded">autorenew</span>
-					</button>
-					<button
-						id="all-random"
-						title="Regenarates every value including the inputs between 0 to 99"
-					>
-						<span class="material-symbols-rounded">temp_preferences_custom</span>
-					</button>
+					<div animate="4">
+						<button id="submit" title="Generates based on the inputs">
+							<span class="material-symbols-rounded">autorenew</span>
+						</button>
+					</div>
+					<div animate="5">
+						<button id="all-random" title="Regenarates every value including the inputs between 0 to 99">
+							<span class="material-symbols-rounded">temp_preferences_custom</span>
+						</button>
+					</div>
 				</div>
 			</div>
 		</main>
